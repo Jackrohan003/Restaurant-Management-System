@@ -1,0 +1,72 @@
+<%- include("partials/chefheader"); -%>
+
+<script>
+    var msg = "<%= msg %>" ;
+    $(document).ready(function() {
+       if(msg)
+           alert(msg);
+    })
+</script>
+
+
+<div class="d-flex flex-column" id="content-wrapper">
+    <div id="content">
+        <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+            <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3"
+                    id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                <h3 class="text-dark mb-0">Dashboard</h3>
+                <form class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group"></div>
+                </form>
+            </div>
+        </nav>
+
+        <div class="card-deck ml-1">
+            <%
+            let i=0; 
+            data.forEach(element => { %>
+            <div class="card col w-75">
+                <div class="card-body">
+                    <h5 class="card-title"><%= element.order.orderId %></h5>
+
+                    <h5 class="card-title"><%= element.item.itemName %></h5>
+
+                    <p class="card-text"><%= element.instruction %></p>
+
+                    <a href="/pendingorder/complete?id=<%= element.orderedItemsId %>"><button class="btn btn-primary">Ready To Serve</button></a>
+
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Order received</small>
+                </div>
+            </div>
+            
+            <%i++;
+                if(i%4 == 0)
+                {
+                    %>
+        </div><br/><div class="card-deck ml-1">
+                    <%
+                }
+            }) %>
+
+        </div>
+
+
+
+
+        <!-- <footer class="bg-white sticky-footer">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span>Copyright © Brand 2020</span></div>
+            </div>
+        </footer> -->
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="/js/theme.js"></script>
+    </body>
+
+    </html>
